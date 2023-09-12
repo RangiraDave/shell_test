@@ -10,11 +10,11 @@
 
 /**
  */
-
+extern char **environ;
 int main()
 {
-	char input[1024];
-	char *env[] = {"PATH"};
+	char input[BUFFER_SIZE];
+	char *env[] = {"PATH=/bin:/usr/bin:/usr/local/bin"};
 	ssize_t read;
 	pid_t pid;
 	int status, i;
@@ -37,7 +37,11 @@ int main()
 			printf("Exit success!\n");
 			break;
 		}
-
+		if (strncmp(input, "pwd", 3) == 0)
+		{
+			_pwd(input);
+			goto end;
+		}
 		newline = strchr(input, '\n');
 		if (newline)
 			*newline = '\0';
@@ -46,6 +50,21 @@ int main()
 		for (i = 0; tokens[i] != NULL; i++)
 			argv[i] = tokens[i];
 		argv[i] = NULL;
+		
+		if (strncmp(argv[0], "cd", 2) == 0)
+		{
+			_cd(argv[1]);
+			goto end;
+		}
+		//if (strncmp(argv[1], " ", 1) == 0)
+				/**_cd();*/
+
+		if (strncmp(argv[0], "echo", 4) == 0)
+		{
+			_echo(argv[1]);
+			goto end;
+		}
+
 		pid = fork();
 		if (pid == -1)
                 {
@@ -60,8 +79,11 @@ int main()
 				return (1);
 			}
 		}
+
 		else
+			end:
 			wait(&status);
+
 	}
 	return (0);
 }
