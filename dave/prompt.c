@@ -34,7 +34,8 @@ int main()
 		}
 		if (strncmp(input, "exit", 4) == 0)
 		{
-			printf("Exit success!\n");
+			/*printf("Exit success!\n");*/
+			exit(98);
 			break;
 		}
 
