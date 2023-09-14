@@ -12,5 +12,6 @@ int n_builtin(char *arg_0, char *arg_1)
 	else if (strncmp(arg_0, "pwd", 3) == 0)
 		_pwd(arg_0);
 	else
-		return (0);
+		return (-1);
+	return (0);
 }

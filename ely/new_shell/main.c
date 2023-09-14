@@ -30,14 +30,14 @@ int main(void)
 		if (tokens_array && tokens_array[0]) 
 		{
 			if (n_builtin(tokens_array[0], tokens_array[1]) == 0)
-				goto end;			
+				goto end;				
 			command_path = find_executable(tokens_array[0]);
 			tokens_array[0] = command_path;
 			if (command_path)
 			{
 				execute_command(tokens_array);
 				free(command_path);
-			}
+			}		
 			else
 				printf("%s: Command not found.\n", tokens_array[0]);
 		}
@@ -48,4 +48,5 @@ end:
 	}
 
 	return (0);
+
 }
