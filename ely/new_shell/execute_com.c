@@ -2,16 +2,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
 
 /**
  * execute_com - Function to fork a new process & execute the command.
  *
  * Return: Nothing.
  */
+extern char **environ;
 
 int execute_command(char **tokens_array)
 {
+	char **env = environ;
 	int status;
 	pid_t pid;
 
@@ -22,9 +26,9 @@ int execute_command(char **tokens_array)
 	
 	if (pid == 0)
 	{
-		if (execve(tokens_array[0], tokens_array, NULL) == -1)
+		if (execve(tokens_array[0], tokens_array, env) == -1)
 		{
-			perror("Error while executing the command");
+			(stderr, "Error while executing the command: error %s\n found", strerror(errno));
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -36,8 +40,12 @@ int execute_command(char **tokens_array)
 	else
 	{
 		wait(&status);
+		if (WIFEXITED(status))
+			return WEXITSTATUS(status);
+		else
+			perror("child process didn't exit");
+		return (-1);
 	}
 	
 	return (1);
 }
-

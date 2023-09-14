@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <string.h>
 
 
 /**
@@ -11,8 +12,10 @@ int main(void)
 {
 	char *input;
 	token_t *tokens_list = NULL;
-	char **tokens_array = NULL, *command_path = NULL;
-
+	char **tokens_array = NULL; 
+	char *command_path;
+	unsigned int i;
+		
 	while (1)
 	{
 		prompt_user();
@@ -20,21 +23,26 @@ int main(void)
 		input = read_input();
 		if (!input)
 			continue;
+		handle_semi(input);
 		tokens_list = parse_input(input);
 		tokens_array = list_to_array(tokens_list);
 
-		/*printf("%s\n%s\n", tokens_list, tokens_array);*/
-		if (tokens_array && tokens_array[0]) /*Atlist one cmd*/
+		if (tokens_array && tokens_array[0]) 
 		{
-			command_path = find_executable(tokens_list, tokens_array[0]);
-			tokens_array[0] = command_path;
-			if (command_path)
-			{
-				execute_command(tokens_array);
-				free(command_path);
-			}
+			if (strcmp(tokens_array[0], "env") == 0)
+				print_env();
 			else
+			{
+				command_path = find_executable(tokens_array[0]);
+				tokens_array[0] = command_path;
+				if (command_path)
+				{
+					execute_command(tokens_array);
+					free(command_path);
+				}
+				else
 				printf("%s: Command not found.\n", tokens_array[0]);
+			}
 		}
 		
 		free_linked_list(tokens_list);

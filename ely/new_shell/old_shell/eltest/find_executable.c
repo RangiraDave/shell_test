@@ -4,7 +4,7 @@
 
 #define BUFFER_SIZE 1024
 
-char *find_executable(token_t *head, char *command)
+char *find_executable(token_t *head, char command[])
 {
 	struct stat st;
 	char *path = malloc(BUFFER_SIZE);

@@ -5,11 +5,10 @@
 
 /**
  */
+extern char **environ;
 
 char *_getenv(const char *name)
 {
-	extern char **environ;
-
 	int i, j;
 	char *env_name;
 	char *env_value;
@@ -39,10 +38,11 @@ char *_getenv(const char *name)
 					return (token[j]);
 					j++;
 				}
-				free(copy);
+				
 			}
 		}
 		i++;
 	}
+	free(copy);
 	return (NULL);
 }

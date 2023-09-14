@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "main.h"
+#include "shell.h"
 
 void _cd(char f_path[])
 {

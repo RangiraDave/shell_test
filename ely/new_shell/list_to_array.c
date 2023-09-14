@@ -9,8 +9,10 @@
 char **list_to_array(token_t *head)
 {
 	char **array;
-	int count = 0, i = 0;
+	int count = 0;
+	int i;
 	token_t *temp = head;
+	int t;
 
 	while (temp)
 	{
@@ -24,13 +26,15 @@ char **list_to_array(token_t *head)
 		perror("Error while allocating memory");
 		exit(EXIT_FAILURE);
 	}
-
-	for (i = 0; temp != NULL; i++)
+	temp = head;
+	for (i = 0; i < count; i++)
 	{
 		array[i] = temp->token;
 		temp = temp->next;
 	}
-	array[i] = NULL;
+	array[count] = NULL;
+	/*for (t = 0; array[t] != NULL; t++)
+		printf("this the contents of the array:%s\n", array[t]);*/
 
 	return (array);
 }

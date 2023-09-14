@@ -14,6 +14,7 @@
 char *read_input()
 {
 	char *input;
+	ssize_t  buffer_size = 1024;
 	ssize_t read;
 	
 	input = malloc(sizeof(input) * sizeof(char));
@@ -23,7 +24,7 @@ char *read_input()
 		exit(EXIT_FAILURE);
 	}
 
-	read = _getline(input, BUFFER_SIZE);
+	read = _getline(input, sizeof(input));
 
 	if (read == -1)
 	{
