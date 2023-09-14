@@ -23,5 +23,8 @@ char *find_executable(char *command);
 void free_linked_list(token_t *head);
 void print_env(void);
 void handle_semi(char* read);
+int n_builtin(char *arg_0, char *arg_1);
+void _cd(char f_path[]);
+void _pwd(char f_path[]);
 
 #endif
