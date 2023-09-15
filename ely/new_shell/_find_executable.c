@@ -11,7 +11,7 @@ char *find_executable(char *command)
 	char *exepath = "/bin/";
    	 if (path == NULL)
     	{	
-        	perror("Error in allocation of  memory for path");
+        	perror("Error while allocation of  memory for path");
         	exit(EXIT_FAILURE);
     	}
 
@@ -20,7 +20,15 @@ char *find_executable(char *command)
 
     	if (stat(path, &st) == 0 && (st.st_mode & S_IXUSR))
 		return path; /* Return full path */
+	else if (stat(command, &st) == 0 && (st.st_mode & S_IXUSR))
+	{
+		return (command);
+	}
+	else
+	{
+		perror("Error while finding command path");
+		return (NULL);
+	}
 	free(path);
 	return NULL; /* If not found, return NULL. */
 }
-

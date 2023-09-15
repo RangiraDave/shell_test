@@ -30,7 +30,6 @@ token_t *parse_path(void)
 
 	while (token && token[i] != NULL)
 	{
-		printf("%s\n", token[i]);
 		new_dir = malloc(sizeof(token_t));
 		if (!new_dir)
 		{
@@ -55,6 +54,7 @@ token_t *parse_path(void)
 
 		token = split_string(NULL, ":");
 		i++;
+		free(new_dir);
 	}
 
 	free(path_copy);
