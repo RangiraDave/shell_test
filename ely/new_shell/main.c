@@ -14,7 +14,7 @@ int main(void)
 	token_t *tokens_list = NULL;
 	char **tokens_array = NULL; 
 	char *command_path;
-	unsigned int i;
+/*	unsigned int i;*/
 		
 	while (1)
 	{
@@ -41,8 +41,8 @@ int main(void)
 			else
 				printf("%s: Command not found.\n", tokens_array[0]);
 		}
-end:
 		free_linked_list(tokens_list);
+		
 		free(tokens_array);
 		free(input);
 	}

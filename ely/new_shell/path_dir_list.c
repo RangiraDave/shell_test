@@ -13,7 +13,7 @@ token_t *parse_path(void)
 {
 	char *path_value = _getenv("PATH"), *path_copy;
 	char **token;
-	token_t *head = NULL, *current = NULL;
+	token_t *head = NULL, *current = NULL, *new_dir = NULL;
 	int i = 0;
 
 	if (!path_value)
@@ -31,7 +31,7 @@ token_t *parse_path(void)
 	while (token && token[i] != NULL)
 	{
 		printf("%s\n", token[i]);
-		token_t *new_dir = malloc(sizeof(token_t));
+		new_dir = malloc(sizeof(token_t));
 		if (!new_dir)
 		{
 			printf("Error while allocating memory for new directory");

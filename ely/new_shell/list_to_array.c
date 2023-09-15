@@ -12,7 +12,7 @@ char **list_to_array(token_t *head)
 	int count = 0;
 	int i;
 	token_t *temp = head;
-	int t;
+/*	int t;*/
 
 	while (temp)
 	{
