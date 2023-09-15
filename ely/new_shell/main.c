@@ -14,7 +14,7 @@ int main(void)
 	token_t *tokens_list = NULL;
 	char **tokens_array = NULL; 
 	char *command_path;
-	unsigned int i;
+/*	unsigned int i;*/
 		
 	while (1)
 	{
@@ -45,7 +45,7 @@ int main(void)
 			}
 		}
 		
-		free_linked_list(tokens_list);
+		/*free_linked_list(tokens_list);*/
 		free(tokens_array);
 		free(input);
 	}

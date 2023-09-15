@@ -41,7 +41,6 @@ token_t *parse_input(char *input)
 			current = new_node;
 		}
 
-		//token = split_string(NULL, " \t\n\r\a");
 		i++;
 	}
 	/*printf("contesnts of a node: %s\n", current->token);*/
