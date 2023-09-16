@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 #define BUFFER_SIZE 1024
 
@@ -28,13 +29,13 @@ char *read_input()
 	if (read == -1)
 	{
 		free(input);
-		exit(98);
+		exit(0);
 	}
 
 	if (strncmp(input, "exit", 4) == 0)
 	{
-		printf("Exit success!\n");
-		exit(98);
+/*		printf("Exit success!\n");*/
+		exit(0);
 	}
 
 	return (input);

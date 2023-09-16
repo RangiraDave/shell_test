@@ -28,7 +28,7 @@ int execute_command(char **tokens_array)
 	{
 		if (execve(tokens_array[0], tokens_array, env) == -1)
 		{
-			printf("Error while executing the command");
+			/*printf("");*/
 			exit(EXIT_FAILURE);
 		}
 	}

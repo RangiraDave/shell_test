@@ -1,7 +1,7 @@
 #include "shell.h"
+#include <unistd.h>
 #include <string.h>
-
-
+ 
 /**
  * main - Funtion to continuously read and execut commands.
  *
@@ -14,11 +14,11 @@ int main(void)
 	token_t *tokens_list = NULL;
 	char **tokens_array = NULL; 
 	char *command_path;
-/*	unsigned int i;*/
 		
 	while (1)
 	{
-		prompt_user();
+		if (isatty(STDIN_FILENO))
+			prompt_user();
 
 		input = read_input();
 		if (!input)
@@ -35,11 +35,24 @@ int main(void)
 			tokens_array[0] = command_path;
 			if (command_path)
 			{
+<<<<<<< HEAD
 				execute_command(tokens_array);
 				free(command_path);
 			}		
 			else
 				printf("%s: Command not found.\n", tokens_array[0]);
+=======
+				command_path = find_executable(tokens_array[0]);
+				tokens_array[0] = command_path;
+				if (command_path)
+				{
+					execute_command(tokens_array);
+					free(command_path);
+				}
+				else
+				printf("%s: Command not found\n", input);
+			}
+>>>>>>> 4e0f5d1 (Checked with Test suites)
 		}
 		free_linked_list(tokens_list);
 		

@@ -43,6 +43,6 @@ char *_getenv(const char *name)
 		}
 		i++;
 	}
-	free(copy);
+	/*free(copy);*/
 	return (NULL);
 }
