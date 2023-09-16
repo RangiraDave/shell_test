@@ -26,7 +26,7 @@ char *find_executable(char *command)
 	}
 	else
 	{
-		perror("Error while finding command path");
+		/*perror("");*/
 		return (NULL);
 	}
 	free(path);

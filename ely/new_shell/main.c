@@ -23,6 +23,7 @@ int main(void)
 		input = read_input();
 		if (!input)
 			continue;
+
 		handle_semi(input);
 		tokens_list = parse_input(input);
 		tokens_array = list_to_array(tokens_list);

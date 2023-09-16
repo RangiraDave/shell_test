@@ -16,7 +16,7 @@ extern char **environ;
 int execute_command(char **tokens_array)
 {
 	char **env = environ;
-	int status;
+	int status, i;
 	pid_t pid;
 
 	if (!tokens_array || !tokens_array[0])
@@ -26,7 +26,12 @@ int execute_command(char **tokens_array)
 	
 	if (pid == 0)
 	{
-		if (execve(tokens_array[0], tokens_array, env) == -1)
+		i = 0;
+		while (strncmp(tokens_array[i], " ", 1) == 0 || strncmp(tokens_array[i], "	", 1) == 0)
+		{
+			i++;
+		}
+		if (execve(tokens_array[i], tokens_array, env) == -1)
 		{
 			/*printf("");*/
 			exit(EXIT_FAILURE);

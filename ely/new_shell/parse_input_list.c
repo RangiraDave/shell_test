@@ -15,9 +15,7 @@ token_t *parse_input(char *input)
 	unsigned int i = 0;
 	/*int t_i;*/
 
-	token = split_string(input, " \t\n\r\a");
-	/*for (t_i = 0; token[t_i] != NULL; t_i++)
-		printf("this is the splited string:%s", token[t_i]);*/
+	token = split_string(input, " \t\n");
 	while (token && token[i] != NULL)
 	{
 		new_node = malloc(sizeof(token_t));
