@@ -7,14 +7,13 @@
  *
  * Return: Always 0;
  */
-
 int main(void)
 {
 	char *input;
 	token_t *tokens_list = NULL;
 	char **tokens_array = NULL; 
 	char *command_path;
-		
+			
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -24,14 +23,14 @@ int main(void)
 		if (!input)
 			continue;
 
-		handle_semi(input);
 		tokens_list = parse_input(input);
 		tokens_array = list_to_array(tokens_list);
 
 		if (tokens_array && tokens_array[0]) 
 		{
-			if (strcmp(tokens_array[0], "env") == 0)
-				print_env();
+			if (builtin(tokens_array[0], tokens_array[1], tokens_array[2]) == 0)
+				goto end;
+
 			else
 			{
 				command_path = find_executable(tokens_array[0]);
@@ -42,10 +41,10 @@ int main(void)
 					free(command_path);
 				}
 				else
-				printf("%s: Command not found\n", input);
+				fprintf(stderr,"%s: Command not found\n", input);
 			}
 		}
-		
+end:
 		/*free_linked_list(tokens_list);*/
 		free(tokens_array);
 		free(input);

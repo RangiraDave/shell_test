@@ -3,10 +3,12 @@
 #include <unistd.h>
 #include "shell.h"
 
-void _cd(char f_path[])
+void _cd(char *arg_1)
 {
-	if(chdir(f_path) == -1)
+	if (arg_1 == NULL)
+		return;
+	if(chdir(arg_1) == -1)
 		{
-			perror("the directory doesn't exist");
+			fprintf(stderr,"./hsh: 1: cd: can't cd to %s\n", arg_1);
 		}
 }

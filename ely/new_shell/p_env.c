@@ -2,12 +2,10 @@
 #include <stdlib.h>
 #include "shell.h"
 extern char **environ;
-
 void print_env()
 {
-	unsigned int i;
-
 	char **env = environ;
+	unsigned int i;
 
 	while (env[i] != NULL)
 	{
