@@ -7,12 +7,14 @@
  *
  * Return: Always 0;
  */
+extern char **environ;
 int main(void)
 {
 	char *input;
 	token_t *tokens_list = NULL;
 	char **tokens_array = NULL; 
 	char *command_path;
+	int i = 0;
 			
 	while (1)
 	{
@@ -41,14 +43,15 @@ int main(void)
 					free(command_path);
 				}
 				else
-				fprintf(stderr,"%s: Command not found\n", input);
+				fprintf(stderr,"%s:1: Command not found\n", input);
 			}
 		}
 end:
 		/*free_linked_list(tokens_list);*/
 		free(tokens_array);
 		free(input);
+		i++;
 	}
-
-	return (0);
+	printf("%d\n", i);
+	return (i);
 }

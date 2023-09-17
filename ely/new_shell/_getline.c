@@ -6,7 +6,7 @@
 
 ssize_t _getline(char *line, ssize_t size)
 {
-        ssize_t len;
+        static ssize_t len;
         if (fgets(line, size, stdin) == NULL)
                 return (-1);
         else
