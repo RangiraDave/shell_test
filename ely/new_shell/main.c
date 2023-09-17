@@ -7,15 +7,13 @@
  *
  * Return: Always 0;
  */
-extern char **environ;
 int main(void)
 {
 	char *input;
 	token_t *tokens_list = NULL;
 	char **tokens_array = NULL; 
 	char *command_path;
-	int i = 1;
-			
+				
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -43,9 +41,9 @@ int main(void)
 					free(command_path);
 				}
 				else
-				fprintf(stderr,"%s:1: Command not found\n", input);
-				i++;
-				return (i);
+				{
+					fprintf(stderr,"%s:1: Command not found\n", input);
+				}
 			}
 		}
 end:
