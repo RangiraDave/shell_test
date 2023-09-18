@@ -7,30 +7,29 @@
 #include <errno.h>
 
 /**
- * execute_com - Function to fork a new process & execute the command.
- *
+ * execute_command - Function to fork a new process & execute the command.
+ *@tokens_array: it is the array of strings of input commands
  * Return: Nothing.
  */
-extern char **environ;
-
 int execute_command(char **tokens_array)
 {
+	extern char **environ;
 	char **env = environ;
 	int status, i;
 	pid_t pid;
 
 	if (!tokens_array || !tokens_array[0])
 		return (-1);
-	
+
 	pid = fork();
-	
+
 	if (pid == 0)
 	{
 		i = 0;
-		while (strncmp(tokens_array[i], " ", 1) == 0 || strncmp(tokens_array[i], "	", 1) == 0)
-		{
+		while (strcmp(tokens_array[i], " ") == 0)
 			i++;
-		}
+		while (strcmp(tokens_array[i], "	") == 0)
+			i++;
 		if (execve(tokens_array[i], tokens_array, env) == -1)
 		{
 			/*printf("");*/
@@ -46,11 +45,10 @@ int execute_command(char **tokens_array)
 	{
 		wait(&status);
 		if (WIFEXITED(status))
-			return WEXITSTATUS(status);
-		else
-			perror("child process didn't exit");
+			return (WEXITSTATUS(status));
+		perror("child process didn't exit");
 		return (-1);
 	}
-	
+
 	return (1);
 }

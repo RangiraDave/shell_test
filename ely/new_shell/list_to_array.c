@@ -4,7 +4,11 @@
 #include <string.h>
 
 /**
- */
+  *list_to_array - it turn the linked list
+  *into an arry of strings each containing  a separate command.
+  *@head: the head of the list containing the commands
+  *Return: a pointer to the array of strings
+  */
 
 char **list_to_array(token_t *head)
 {
@@ -12,7 +16,6 @@ char **list_to_array(token_t *head)
 	int count = 0;
 	int i;
 	token_t *temp = head;
-/*	int t;*/
 
 	while (temp)
 	{
@@ -33,8 +36,5 @@ char **list_to_array(token_t *head)
 		temp = temp->next;
 	}
 	array[count] = NULL;
-	/*for (t = 0; array[t] != NULL; t++)
-		printf("this the contents of the array:%s\n", array[t]);*/
-
 	return (array);
 }
