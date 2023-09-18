@@ -2,9 +2,16 @@
 #include <string.h>
 #include "shell.h"
 
+/**
+ * split_string - Function to split string according to delimiter given.
+ * @str: String to be splet.
+ * @delim: Delimiter to be used.
+ * Return: Array of strings.
+ */
+
 char **split_string(char *str, const char *delim)
 {
-	int count = 0, i = 0, j = 0, start = 0;
+	int count = 0, i = 0, j = 0, t = 0, start = 0;
 	char **tokens = NULL;
 
 	while (str[i])
@@ -20,37 +27,29 @@ char **split_string(char *str, const char *delim)
 		else
 			i++;
 	}
-
 	tokens = malloc((count + 2) * sizeof(char *));
-	if (!tokens)
-		exit(1);
-
-	i = 0;
-	/* Token extraction */
-	while (str[i])
+	while (str[t])
 	{
-		if (strchr(delim, str[i]) || !str[i + 1])
+		if (strchr(delim, str[t]) || !str[t + 1])
 		{
-			if (!strchr(delim, str[i]) && str[i + 1] == '\0')
-				i++;
-			if ((i - start) > 0)
+			if (!strchr(delim, str[t]) && str[t + 1] == '\0')
+				t++;
+			if ((t - start) > 0)
 			{
-				tokens[j] = malloc(i - start + 1);
-				if (!tokens[j])
+				tokens[j] = malloc(t - start + 1);
+				if (!tokens || !tokens[j])
 					exit(1);
-				strncpy(tokens[j], &str[start], i - start);
-				tokens[j][i - start] = '\0'; /* Null terminate the token */
+				strncpy(tokens[j], &str[start], t - start);
+				tokens[j][t - start] = '\0';
 				j++;
 			}
-
-			while (strchr(delim, str[i]) && str[i])
-				i++;
-			start = i;
+			while (strchr(delim, str[t]) && str[t])
+				t++;
+			start = t;
 		}
 		else
-			i++;
+			t++;
 	}
-	tokens[j] = NULL; /* Null terminate the array of tokens */
-
-	return tokens;
+	tokens[j] = NULL;
+	return (tokens);
 }

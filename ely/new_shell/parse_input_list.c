@@ -3,8 +3,9 @@
 #include <string.h>
 
 /**
- * parse_input - Funtion to tokenize the read input 
+ * parse_input - Funtion to tokenize the read input
  * and store them in a linked list.
+ * @input: Pointer to the user input.
  * Return: Tokens.
  */
 

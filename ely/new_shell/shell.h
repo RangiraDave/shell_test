@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/**
+ * struct token_s - Structure to create a node for linked list.
+ * @token: Pointer to the node.
+ * @next: Pointer to the next node.
+ */
+
 typedef struct token_s
 {
 
@@ -21,12 +27,11 @@ int execute_command(char **tokens_array);
 char **list_to_array(token_t *head);
 char *find_executable(char *command);
 void free_linked_list(token_t *head);
-void print_env();
-void handle_semi(char* read);
+/*void print_env();*/
+void handle_semi(char *read);
 int builtin(char *arg_0, char *arg_1, char *arg_2);
 void _cd(char *arg_1);
-void _pwd();
+void _pwd(void);
 int _setenv(const char *name, const char *value, int overwrite);
-/*int _unset(char *arg_1);*/
 
 #endif

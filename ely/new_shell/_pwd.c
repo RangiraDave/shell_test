@@ -2,7 +2,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "shell.h"
-void _pwd()
+
+/**
+ * _pwd - Function to print current working directory.
+ * Return: Nothing
+ */
+
+void _pwd(void)
 {
 	char *buf;
 	size_t size = 1024;

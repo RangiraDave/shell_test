@@ -16,7 +16,7 @@ char *read_input()
 {
 	char *input;
 	ssize_t read;
-	
+
 	input = malloc(sizeof(input) * sizeof(char));
 	if (!input)
 	{
