@@ -1,0 +1,7 @@
+#SIMPLE SHELL
+#By David Rangira and Elyse Mathieu Nshimyumukiza
+
+our shell takes input from the standard input and tokenize it into arguments,
+    to be passed in the execve function which executes it.
+
+#
